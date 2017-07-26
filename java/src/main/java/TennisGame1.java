@@ -70,20 +70,17 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScore() {
-        String score = "";
-
         if (isDeuce(m_score1,m_score2))
         {
-           score = getScoreWhenDeuce(m_score1);
+           return getScoreWhenDeuce(m_score1);
         }
         else if (isAdvantageOrWinner())
         {
-           score = getScoreWhenAdvantageOrWinner();
+           return getScoreWhenAdvantageOrWinner();
         }
         else
         {
-            score = getNormalScore(m_score1) + "-" + getNormalScore(m_score2);
+            return getNormalScore(m_score1) + "-" + getNormalScore(m_score2);
         }
-        return score;
     }
 }

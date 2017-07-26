@@ -40,9 +40,22 @@ public class TennisGame1 implements TennisGame {
         }
     }
 
+    public String getNormalScore(int score){
+        switch(score)
+        {
+            case 1:
+                return "Fifteen";
+            case 2:
+                return "Thirty";
+            case 3:
+                return "Forty";
+            default: return "Love";
+        }
+
+    }
     public String getScore() {
         String score = "";
-        int tempScore=0;
+        
         if (isDeuce(m_score1,m_score2))
         {
           return getScoreWhenDeuce(m_score1);
@@ -57,26 +70,7 @@ public class TennisGame1 implements TennisGame {
         }
         else
         {
-            for (int i=1; i<3; i++)
-            {
-                if (i==1) tempScore = m_score1;
-                else { score+="-"; tempScore = m_score2;}
-                switch(tempScore)
-                {
-                    case 0:
-                        score+="Love";
-                        break;
-                    case 1:
-                        score+="Fifteen";
-                        break;
-                    case 2:
-                        score+="Thirty";
-                        break;
-                    case 3:
-                        score+="Forty";
-                        break;
-                }
-            }
+            score = getNormalScore(m_score1) + "-" + getNormalScore(m_score2);
         }
         return score;
     }

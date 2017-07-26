@@ -53,20 +53,32 @@ public class TennisGame1 implements TennisGame {
         }
 
     }
+
+    public boolean isAdvantageOrWinner(){
+        if(m_score1>=4 || m_score2>=4){
+            return true;
+        }
+        return false;
+    }
+
+    public String getScoreWhenAdvantageOrWinner(){
+        int minusResult = m_score1 - m_score2;
+        if (minusResult==1) return "Advantage " + player1Name;
+        else if (minusResult ==-1) return "Advantage " + player2Name;
+        else if (minusResult>=2) return "Win for " + player1Name;
+        else return "Win for " + player2Name;
+    }
+
     public String getScore() {
         String score = "";
-        
+
         if (isDeuce(m_score1,m_score2))
         {
-          return getScoreWhenDeuce(m_score1);
+           score = getScoreWhenDeuce(m_score1);
         }
-        else if (m_score1>=4 || m_score2>=4)
+        else if (isAdvantageOrWinner())
         {
-            int minusResult = m_score1-m_score2;
-            if (minusResult==1) score ="Advantage player1";
-            else if (minusResult ==-1) score ="Advantage player2";
-            else if (minusResult>=2) score = "Win for player1";
-            else score ="Win for player2";
+           score = getScoreWhenAdvantageOrWinner();
         }
         else
         {
